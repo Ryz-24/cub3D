@@ -4,6 +4,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
+# include <fcntl.h>
 
 # define KEY_ESC 65307
 
@@ -71,10 +72,36 @@ typedef struct s_game
 	t_player	player;
 	t_mlx		mlx;
 	t_image		image;
+	char		**lines;
 }	t_game;
+
+/* parsing/parse_file.c */
+void	parse_file(t_game *game, char *path);
+
+/* parsing/parse_elements.c */
+int		parse_elements(t_game *game);
+
+/* parsing/parse_map.c */
+void	parse_map(t_game *game, int start);
+
+/* parsing/check_map.c */
+void	check_map(t_game *game);
+
+/* parsing/init_player.c */
+void	init_player(t_game *game);
+
+/* parsing/parse_texture.c */
+void	parse_texture(t_game *game, char **dst, char *value);
+
+/* parsing/parse_color.c */
+void	parse_color(t_game *game, t_color *color, char *value);
 
 /* utils/error.c */
 void	error_exit(t_game *game, char *msg);
+
+/* utils/parse_utils.c */
+int		is_space(char c);
+char	*skip_spaces(char *str);
 
 /* utils/free.c */
 void	free_grid(char **grid);

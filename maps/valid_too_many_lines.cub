@@ -22,7 +22,7 @@
 
 
 
-NO ./texture.xpm
+NO ./textures/north.xpm
 
 
 
@@ -41,7 +41,7 @@ NO ./texture.xpm
 
 
 
-SO ./texture.xpm
+SO ./textures/south.xpm
 
 
 
@@ -59,7 +59,7 @@ SO ./texture.xpm
 
 
 
-WE ./texture.xpm
+WE ./textures/west.xpm
 
 
 
@@ -83,7 +83,7 @@ WE ./texture.xpm
 
 
 
-EA ./texture.xpm
+EA ./textures/east.xpm
 
 
 

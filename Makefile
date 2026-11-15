@@ -13,8 +13,16 @@ MLX_FLAGS = -lXext -lX11 -lm
 INCLUDES = -Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 SRC = src/main.c \
+      src/parsing/parse_file.c \
+      src/parsing/parse_elements.c \
+      src/parsing/parse_texture.c \
+      src/parsing/parse_color.c \
+      src/parsing/parse_map.c \
+      src/parsing/check_map.c \
+      src/parsing/init_player.c \
       src/utils/error.c \
       src/utils/free.c \
+      src/utils/parse_utils.c \
       src/input/hooks.c \
       src/render/init_mlx.c
 
