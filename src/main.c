@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(game));
 	if (argc != 2)
 		error_exit(&game, "Usage: ./cub3D <map.cub>");
-	(void)argv;
+	parse_file(&game, argv[1]);
 	init_mlx(&game);
 	init_img(&game);
 	game.image.ceil_color = 0xFF0000;

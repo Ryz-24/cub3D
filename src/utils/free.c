@@ -59,6 +59,7 @@ void	clean_exit(t_game *game, int status)
 {
 	destroy_mlx(&game->mlx, &game->image);
 	free_grid(game->map.grid);
+	free_grid(game->lines);
 	free_textures(&game->config.textures);
 	exit(status);
 }
