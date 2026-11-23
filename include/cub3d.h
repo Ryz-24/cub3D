@@ -6,7 +6,7 @@
 /*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:14:32 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/23 00:53:36 by maradweh         ###   ########.fr       */
+/*   Updated: 2026/11/23 13:11:28 by maradweh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,6 @@ void	init_img(t_game *game);
 void	put_pixel(t_image *img, int x, int y, int color);
 void	drawing_time(t_game *game);
 int		render_frame(t_game *game);
+void	init_player(t_player *p, char c);
+
 #endif
