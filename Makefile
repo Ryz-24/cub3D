@@ -15,8 +15,10 @@ INCLUDES = -Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
 SRC = src/main.c \
       src/utils/error.c \
       src/utils/free.c \
+      src/utils/color.c \
       src/input/hooks.c \
-      src/render/init_mlx.c
+      src/render/init_mlx.c \
+      src/render/img.c
 
 OBJ = $(SRC:.c=.o)
 

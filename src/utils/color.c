@@ -6,11 +6,11 @@
 /*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 20:31:05 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/19 01:11:50 by maradweh         ###   ########.fr       */
+/*   Updated: 2026/11/23 00:26:09 by maradweh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 int	pack_color(t_color c)
 {

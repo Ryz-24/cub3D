@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/22 23:14:32 by maradweh          #+#    #+#             */
+/*   Updated: 2026/11/23 00:53:36 by maradweh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -6,6 +18,9 @@
 # include "mlx.h"
 
 # define KEY_ESC 65307
+# define WIN_H 720
+# define WIN_W 1280
+# define FOV 0.66
 
 typedef struct s_map
 {
@@ -62,6 +77,8 @@ typedef struct s_image
 	int		endian;
 	int		width;
 	int		height;
+	int		floor_color;
+	int		ceil_color;
 }	t_image;
 
 typedef struct s_game
@@ -80,10 +97,14 @@ void	error_exit(t_game *game, char *msg);
 void	free_grid(char **grid);
 void	clean_exit(t_game *game, int status);
 
+int		pack_color(t_color c);
 /* input/hooks.c */
 void	init_hooks(t_game *game);
 
 /* render/init_mlx.c */
 void	init_mlx(t_game *game);
-
+void	init_img(t_game *game);
+void	put_pixel(t_image *img, int x, int y, int color);
+void	drawing_time(t_game *game);
+int		render_frame(t_game *game);
 #endif
