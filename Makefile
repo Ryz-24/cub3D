@@ -25,8 +25,9 @@ SRC = src/main.c \
       src/utils/parse_utils.c \
       src/input/hooks.c \
       src/render/init_mlx.c \
-      src/render/img.c
-
+      src/render/img.c \
+      src/render/player.c \
+      
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
