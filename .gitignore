@@ -2,3 +2,5 @@
 *.o
 Fixed
 Fixed_*
+.cub3d-mode-normal
+.cub3d-mode-bonus

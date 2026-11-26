@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:14:12 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/23 11:59:11 by maradweh         ###   ########.fr       */
+/*   Updated: 2026/11/26 14:48:23 by malmarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main(int argc, char **argv)
 	parse_file(&game, argv[1]);
 	init_mlx(&game);
 	init_img(&game);
-	game.image.ceil_color = 0xFF0000;
-	game.image.floor_color = 0xF0F000;
-	// game.image.floor_color = pack_color(game.config.floor);
-	// game.image.ceil_color = pack_color(game.config.ceiling);
+	load_textures(&game);
+	game.image.floor_color = pack_color(game.config.floor);
+	game.image.ceil_color = pack_color(game.config.ceiling);
+	cast_rays(&game);
 	init_hooks(&game);
 	mlx_loop(game.mlx.mlx);
 	return (0);

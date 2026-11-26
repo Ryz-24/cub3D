@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:13:35 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/23 11:11:11 by maradweh         ###   ########.fr       */
+/*   Updated: 2026/11/26 14:49:10 by malmarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	drawing_time(t_game *game)
 int	render_frame(t_game *game)
 {
 	drawing_time(game);
+	cast_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win,
 		game->image.img, 0, 0);
 	return (0);
 }
-

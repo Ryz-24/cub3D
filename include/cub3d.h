@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maradweh <maradweh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:14:32 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/23 13:11:28 by maradweh         ###   ########.fr       */
+/*   Updated: 2026/11/26 15:41:16 by malmarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@
 # include "get_next_line.h"
 # include "mlx.h"
 # include <fcntl.h>
+# include <math.h>
 
 # define KEY_ESC 65307
 # define WIN_H 720
 # define WIN_W 1280
 # define FOV 0.66
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.08
 
 typedef struct s_map
 {
@@ -82,14 +91,54 @@ typedef struct s_image
 	int		ceil_color;
 }	t_image;
 
+typedef struct s_ray
+{
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	delta_x;
+	double	delta_y;
+	double	step_x;
+	double	step_y;
+	double	hit;
+	double	side;
+	double	side_x;
+	double	side_y;
+	double	perp_dist;
+	int		map_x;
+	int		map_y;
+}	t_ray;
+
+typedef struct s_wall_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_wall_texture;
+
+typedef struct s_wall_draw
+{
+	t_wall_texture	*tex;
+	double			height;
+	double			top;
+	int				tex_x;
+	int				end;
+}	t_wall_draw;
+
 typedef struct s_game
 {
-	t_config	config;
-	t_map		map;
-	t_player	player;
-	t_mlx		mlx;
-	t_image		image;
-	char		**lines;
+	t_config		config;
+	t_map			map;
+	t_player		player;
+	t_mlx			mlx;
+	t_image			image;
+	char			**lines;
+	t_ray			ray;
+	t_wall_texture	wall_textures[4];
 }	t_game;
 
 /* parsing/parse_file.c */
@@ -103,9 +152,6 @@ void	parse_map(t_game *game, int start);
 
 /* parsing/check_map.c */
 void	check_map(t_game *game);
-
-/* parsing/init_player.c */
-void	init_player(t_game *game);
 
 /* parsing/parse_texture.c */
 void	parse_texture(t_game *game, char **dst, char *value);
@@ -127,6 +173,11 @@ void	clean_exit(t_game *game, int status);
 int		pack_color(t_color c);
 /* input/hooks.c */
 void	init_hooks(t_game *game);
+/* input/hooks .c */
+void	init_bonus_hooks(t_game *game);
+/*input/movement.c*/
+void	rotate_player(t_player *p, double angle);
+void	move_player(t_game *game, double dx, double dy);
 
 /* render/init_mlx.c */
 void	init_mlx(t_game *game);
@@ -135,5 +186,9 @@ void	put_pixel(t_image *img, int x, int y, int color);
 void	drawing_time(t_game *game);
 int		render_frame(t_game *game);
 void	init_player(t_player *p, char c);
-
+void	cast_rays(t_game *g);
+void	run_dda(t_game *g);
+void	draw_wall(t_game *g, int x);
+void	load_textures(t_game *game);
+int		main_bonus(int argc, char **argv);
 #endif
