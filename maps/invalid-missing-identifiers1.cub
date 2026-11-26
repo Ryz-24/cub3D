@@ -1,6 +1,6 @@
-NO ./texture.xpm
-SO ./texture.xpm
-EA ./texture.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
 C 225,30,0
 
     11111

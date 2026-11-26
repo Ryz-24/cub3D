@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/22 23:14:06 by maradweh          #+#    #+#             */
+/*   Updated: 2026/11/26 14:48:39 by malmarad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_grid(char **grid)
@@ -39,14 +51,32 @@ static void	destroy_mlx(t_mlx *mlx, t_image *image)
 	free(mlx->mlx);
 }
 
+static void	destroy_wall_textures(t_game *game)
+{
+	int	i;
+
+	if (!game->mlx.mlx)
+		return ;
+	i = 0;
+	while (i < 4)
+	{
+		if (game->wall_textures[i].img)
+			mlx_destroy_image(game->mlx.mlx,
+				game->wall_textures[i].img);
+		i++;
+	}
+}
+
 /*
 ** Works at any stage because main() zeroes the whole t_game first:
 ** anything not allocated yet is NULL and is skipped (free(NULL) is safe).
 */
 void	clean_exit(t_game *game, int status)
 {
+	destroy_wall_textures(game);
 	destroy_mlx(&game->mlx, &game->image);
 	free_grid(game->map.grid);
+	free_grid(game->lines);
 	free_textures(&game->config.textures);
 	exit(status);
 }
