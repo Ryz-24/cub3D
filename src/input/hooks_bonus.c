@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static int	mouse_move(int x, int y, t_game *game)
 {

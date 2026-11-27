@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 23:14:32 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/26 15:41:16 by malmarad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -173,7 +161,6 @@ void	clean_exit(t_game *game, int status);
 
 int		pack_color(t_color c);
 void	init_hooks(t_game *game);
-void	init_bonus_hooks(t_game *game);
 void	rotate_player(t_player *p, double angle);
 void	update_player(t_game *game);
 
@@ -187,5 +174,4 @@ void	cast_rays(t_game *g);
 void	run_dda(t_game *g);
 void	draw_wall(t_game *g, int x);
 void	load_textures(t_game *game);
-int		main_bonus(int argc, char **argv);
 #endif

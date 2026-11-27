@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 // zero everything, so clean_exit() knows what is not allocated yet
 int	main(int argc, char **argv)

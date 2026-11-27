@@ -64,7 +64,7 @@ $(LIBFT):
 $(MLX):
 	$(MAKE) -C $(MLX_DIR)
 
-%.o: %.c include/cub3d.h
+%.o: %.c include/cub3d.h include/cub3d_bonus.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 bonus:
