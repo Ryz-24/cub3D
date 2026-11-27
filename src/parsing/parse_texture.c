@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-// the path must end in .xpm and the file must open
 static void	check_texture_file(t_game *game, char *path)
 {
 	size_t	len;

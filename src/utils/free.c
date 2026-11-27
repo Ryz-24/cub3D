@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 23:14:06 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/26 14:48:39 by malmarad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 void	free_grid(char **grid)
@@ -35,10 +23,6 @@ static void	free_textures(t_texture *tex)
 	free(tex->ea);
 }
 
-/*
-** Order matters: images and window need the display, so the display
-** goes last. When we add the 4 texture images, destroy them here too
-*/
 static void	destroy_mlx(t_mlx *mlx, t_image *image)
 {
 	if (!mlx->mlx)
@@ -67,10 +51,6 @@ static void	destroy_wall_textures(t_game *game)
 	}
 }
 
-/*
-** Works at any stage because main() zeroes the whole t_game first:
-** anything not allocated yet is NULL and is skipped (free(NULL) is safe).
-*/
 void	clean_exit(t_game *game, int status)
 {
 	destroy_wall_textures(game);

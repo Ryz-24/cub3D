@@ -19,21 +19,21 @@ COMMON_SRC = \
       src/parsing/parse_color.c \
       src/parsing/parse_map.c \
       src/parsing/check_map.c \
+      src/parsing/init_player.c \
       src/utils/error.c \
       src/utils/free.c \
       src/utils/color.c \
       src/utils/parse_utils.c \
       src/render/init_mlx.c \
       src/render/img.c \
-      src/render/player.c \
       src/render/ray.c \
       src/render/dda.c \
       src/render/wall.c \
       src/render/texture.c \
-      src/input/movement.c
-SRC = $(COMMON_SRC) \
-      src/main.c \
+      src/input/movement.c \
       src/input/hooks.c
+SRC = $(COMMON_SRC) \
+      src/main.c
 SRC_BONUS =$(COMMON_SRC) \
             src/main_bonus.c \
             src/input/hooks_bonus.c

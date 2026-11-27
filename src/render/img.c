@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: malmarad <malmarad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 23:13:35 by maradweh          #+#    #+#             */
-/*   Updated: 2026/11/26 14:49:10 by malmarad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 void	init_img(t_game *game)
@@ -63,6 +51,7 @@ void	drawing_time(t_game *game)
 
 int	render_frame(t_game *game)
 {
+	update_player(game);
 	drawing_time(game);
 	cast_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win,
