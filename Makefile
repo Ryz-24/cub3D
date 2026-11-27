@@ -12,7 +12,7 @@ MLX_FLAGS = -lXext -lX11 -lm
 
 INCLUDES = -Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
 
-SRC = src/main.c \
+COMMON_SRC = \
       src/parsing/parse_file.c \
       src/parsing/parse_elements.c \
       src/parsing/parse_texture.c \
@@ -22,31 +22,63 @@ SRC = src/main.c \
       src/parsing/init_player.c \
       src/utils/error.c \
       src/utils/free.c \
+      src/utils/color.c \
       src/utils/parse_utils.c \
-      src/input/hooks.c \
+      src/render/init_mlx.c \
+      src/render/img.c \
+      src/render/ray.c \
+      src/render/dda.c \
+      src/render/wall.c \
+      src/render/texture.c \
       src/input/movement.c \
-      src/render/init_mlx.c
+      src/input/hooks.c
+SRC = $(COMMON_SRC) \
+      src/main.c
+SRC_BONUS =$(COMMON_SRC) \
+            src/main_bonus.c \
+            src/input/hooks_bonus.c
 
-OBJ = $(SRC:.c=.o)
+ifeq ($(MODE),bonus)
+BUILD_SRC = $(SRC_BONUS)
+BUILD_MODE = bonus
+else
+BUILD_SRC = $(SRC)
+BUILD_MODE = normal
+endif
+
+OBJ = $(BUILD_SRC:.c=.o)
+MODE_STAMP = .cub3d-mode-$(BUILD_MODE)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C $(LIBFT_DIR)
-	make -C $(MLX_DIR)
+$(NAME): $(MODE_STAMP) $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
-%.o: %.c
+$(MODE_STAMP):
+	rm -f .cub3d-mode-normal .cub3d-mode-bonus
+	touch $@
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
+%.o: %.c include/cub3d.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+bonus:
+	$(MAKE) MODE=bonus all
+
 clean:
-	make -C $(LIBFT_DIR) clean
-	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(SRC:.c=.o) $(SRC_BONUS:.c=.o)
+	rm -f .cub3d-mode-normal .cub3d-mode-bonus
 
 fclean: clean
-	make -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

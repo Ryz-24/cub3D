@@ -1,13 +1,11 @@
 #include "cub3d.h"
 
-// a map row is the first line whose first non-space character is 1 or 0
 static int	is_map_line(char *line)
 {
 	line = skip_spaces(line);
 	return (*line == '1' || *line == '0');
 }
 
-// true if line starts with id followed by a space or a tab ("NO ./a.xpm")
 static int	is_id(char *line, char *id)
 {
 	size_t	len;

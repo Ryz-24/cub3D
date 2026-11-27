@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-// the name must end in exactly ".cub" and have something before it
 static int	check_extension(char *path)
 {
 	size_t	len;
@@ -13,7 +12,6 @@ static int	check_extension(char *path)
 	return (1);
 }
 
-// get_next_line keeps the '\n', we don't want it in our lines
 static void	remove_newline(char *line)
 {
 	size_t	len;
@@ -23,7 +21,6 @@ static void	remove_newline(char *line)
 		line[len - 1] = '\0';
 }
 
-// makes the lines array one bigger and puts the new line at the end
 static int	add_line(t_game *game, char *line, int count)
 {
 	char	**new;

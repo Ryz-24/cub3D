@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-// cells the player can stand on: floor or the start position
 static int	is_walkable(char c)
 {
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');

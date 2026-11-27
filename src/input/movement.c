@@ -31,7 +31,7 @@ static void	try_move(t_game *game, double dx, double dy)
 }
 
 // rotates dir and plane by the same angle (positive = turn right)
-static void	rotate(t_player *p, double angle)
+void	rotate_player(t_player *p, double angle)
 {
 	double	old_x;
 	double	c;
@@ -64,5 +64,5 @@ void	update_player(t_game *game)
 		try_move(game, p->dir_x * fwd - p->dir_y * side,
 			p->dir_y * fwd + p->dir_x * side);
 	if (k->right != k->left)
-		rotate(p, (k->right - k->left) * ROT_SPEED);
+		rotate_player(p, (k->right - k->left) * ROT_SPEED);
 }

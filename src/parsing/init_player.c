@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
 // dir is where the player looks (y grows downward, so north is 0,-1)
-// plane is dir turned 90 degrees to the right, scaled by PLANE_LEN
+// plane is dir turned 90 degrees to the right, scaled by FOV
 static void	set_direction(t_player *player, char c)
 {
 	player->dir_x = 0;
@@ -14,8 +14,8 @@ static void	set_direction(t_player *player, char c)
 		player->dir_x = 1;
 	else if (c == 'W')
 		player->dir_x = -1;
-	player->plane_x = -player->dir_y * PLANE_LEN;
-	player->plane_y = player->dir_x * PLANE_LEN;
+	player->plane_x = -player->dir_y * FOV;
+	player->plane_y = player->dir_x * FOV;
 }
 
 // finds the N/S/E/W cell, puts the player in the middle of it,

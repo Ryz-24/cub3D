@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-// index of the last line that is not empty (anything after it is ignored)
 static int	find_map_end(t_game *game, int start)
 {
 	int	end;
@@ -17,8 +16,6 @@ static int	find_map_end(t_game *game, int start)
 	return (end);
 }
 
-// checks every character of one map row, counts the players
-// returns the length of the row
 static int	check_line(t_game *game, char *line, int *players)
 {
 	int	i;
@@ -62,7 +59,6 @@ static void	check_rows(t_game *game, int start, int end)
 	game->map.height = end - start + 1;
 }
 
-// copies the map rows into map.grid, padding each row with spaces to width
 static void	build_grid(t_game *game, int start)
 {
 	int		y;
@@ -85,7 +81,7 @@ static void	build_grid(t_game *game, int start)
 	}
 }
 
-// start is the index of the first map line, given by parse_elements
+// start is the index of the first map line
 void	parse_map(t_game *game, int start)
 {
 	int	end;
