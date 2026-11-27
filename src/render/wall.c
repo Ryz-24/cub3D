@@ -22,12 +22,12 @@ static t_wall_texture	*select_texture(t_game *g)
 	if (g->ray.side == 0)
 	{
 		if (g->ray.dir_x > 0)
-			return (&g->wall_textures[2]);
-		return (&g->wall_textures[3]);
+			return (&g->wall_textures[3]);
+		return (&g->wall_textures[2]);
 	}
 	if (g->ray.dir_y > 0)
-		return (&g->wall_textures[0]);
-	return (&g->wall_textures[1]);
+		return (&g->wall_textures[1]);
+	return (&g->wall_textures[0]);
 }
 
 /*
@@ -45,8 +45,8 @@ static int	get_texture_x(t_game *g, t_wall_texture *tex)
 		hit = g->player.x + g->ray.perp_dist * g->ray.dir_x;
 	hit -= floor(hit);
 	tex_x = (int)(hit * tex->width);
-	if ((g->ray.side == 0 && g->ray.dir_x > 0)
-		|| (g->ray.side == 1 && g->ray.dir_y < 0))
+	if ((g->ray.side == 0 && g->ray.dir_x < 0)
+		|| (g->ray.side == 1 && g->ray.dir_y > 0))
 		tex_x = tex->width - tex_x - 1;
 	return (tex_x);
 }
