@@ -24,6 +24,7 @@ SRC = src/main.c \
       src/utils/free.c \
       src/utils/parse_utils.c \
       src/input/hooks.c \
+      src/input/movement.c \
       src/render/init_mlx.c
 
 OBJ = $(SRC:.c=.o)

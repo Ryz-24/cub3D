@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 void	error_exit(t_game *game, char *msg)
 {
 	write(2, "Error\n", 6);

@@ -7,6 +7,21 @@
 # include <fcntl.h>
 
 # define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+
+// length of the camera plane: FOV = 2 * atan(0.66) = about 66 degrees
+# define PLANE_LEN 0.66
+
+// how far the player moves / turns (in radians) each frame
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.04
+// how close the player can get to a wall
+# define WALL_MARGIN 0.2
 
 typedef struct s_map
 {
@@ -24,6 +39,17 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 }	t_player;
+
+// 1 while the key is held down, 0 when released
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
 
 typedef struct s_texture
 {
@@ -73,44 +99,30 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_image		image;
 	char		**lines;
+	t_keys		keys;
 }	t_game;
 
-/* parsing/parse_file.c */
+/*        PARSING        */
 void	parse_file(t_game *game, char *path);
-
-/* parsing/parse_elements.c */
 int		parse_elements(t_game *game);
-
-/* parsing/parse_map.c */
 void	parse_map(t_game *game, int start);
-
-/* parsing/check_map.c */
 void	check_map(t_game *game);
-
-/* parsing/init_player.c */
 void	init_player(t_game *game);
-
-/* parsing/parse_texture.c */
 void	parse_texture(t_game *game, char **dst, char *value);
-
-/* parsing/parse_color.c */
 void	parse_color(t_game *game, t_color *color, char *value);
 
-/* utils/error.c */
+/*        UTILS        */
 void	error_exit(t_game *game, char *msg);
-
-/* utils/parse_utils.c */
 int		is_space(char c);
 char	*skip_spaces(char *str);
-
-/* utils/free.c */
 void	free_grid(char **grid);
 void	clean_exit(t_game *game, int status);
 
-/* input/hooks.c */
+/*        INPUT        */
 void	init_hooks(t_game *game);
+void	update_player(t_game *game);
 
-/* render/init_mlx.c */
+/*        RENDER        */
 void	init_mlx(t_game *game);
 
 #endif

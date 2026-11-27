@@ -96,4 +96,5 @@ void	parse_map(t_game *game, int start)
 	check_rows(game, start, end);
 	build_grid(game, start);
 	check_map(game);
+	init_player(game);
 }
